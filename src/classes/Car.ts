@@ -1,20 +1,22 @@
-// Importing Vehicle and Wheel classes
 import Vehicle from './Vehicle.js';
 import Wheel from './Wheel.js';
 
-// Car class that extends Vehicle class
+/**
+ * Represents a Car vehicle type
+ * Extends the base Vehicle class with car-specific functionality
+ */
 class Car extends Vehicle {
-  // Declare properties of the Car class
-  vin: string;
-  color: string;
-  make: string;
-  model: string;
-  year: number;
-  weight: number;
-  topSpeed: number;
-  wheels: Wheel[];
-
-  // Constructor for the Car class
+  /**
+   * Creates a new Car instance
+   * @param vin - Vehicle Identification Number
+   * @param color - Car color
+   * @param make - Manufacturer
+   * @param model - Car model
+   * @param year - Manufacturing year
+   * @param weight - Weight in pounds
+   * @param topSpeed - Maximum speed in mph
+   * @param wheels - Array of Wheel objects
+   */
   constructor(
     vin: string,
     color: string,
@@ -25,33 +27,29 @@ class Car extends Vehicle {
     topSpeed: number,
     wheels: Wheel[]
   ) {
-    // Call the constructor of the parent class, Vehicle
-    super();
+    // Call parent constructor with all vehicle properties
+    super(vin, color, make, model, year, weight, topSpeed, wheels);
 
-    // Initialize properties of the Car class
-    this.vin = vin;
-    this.color = color;
-    this.make = make;
-    this.model = model;
-    this.year = year;
-    this.weight = weight;
-    this.topSpeed = topSpeed;
-    // Check if the wheels array has 4 elements
-    // If not, create 4 new Wheel objects
-    // Otherwise, use the provided wheels array
+    // Initialize wheels if not provided or incorrect number
     if (wheels.length !== 4) {
-      this.wheels = [new Wheel(), new Wheel(), new Wheel(), new Wheel()];
-    } else {
-      this.wheels = wheels;
+      this.wheels = [
+        new Wheel(16, "Generic"),
+        new Wheel(16, "Generic"),
+        new Wheel(16, "Generic"),
+        new Wheel(16, "Generic")
+      ];
     }
   }
 
-  // Override the printDetails method from the Vehicle class
+  /**
+   * Displays detailed information about the car
+   * Overrides the base Vehicle printDetails method
+   */
   override printDetails(): void {
-    // Call the printDetails method of the parent class, Vehicle
     super.printDetails();
-
-    // Print details of the Car class
+    
+    // Print car-specific details
+    console.log('\nCar Details:');
     console.log(`VIN: ${this.vin}`);
     console.log(`Color: ${this.color}`);
     console.log(`Make: ${this.make}`);
@@ -60,21 +58,12 @@ class Car extends Vehicle {
     console.log(`Weight: ${this.weight} lbs`);
     console.log(`Top Speed: ${this.topSpeed} mph`);
 
-    // Print details of the wheels
-    console.log(
-      `Wheel 1: ${this.wheels[0].getDiameter} inch with a ${this.wheels[0].getTireBrand} tire`
-    );
-    console.log(
-      `Wheel 2: ${this.wheels[1].getDiameter} inch with a ${this.wheels[1].getTireBrand} tire`
-    );
-    console.log(
-      `Wheel 3: ${this.wheels[2].getDiameter} inch with a ${this.wheels[2].getTireBrand} tire`
-    );
-    console.log(
-      `Wheel 4: ${this.wheels[3].getDiameter} inch with a ${this.wheels[3].getTireBrand} tire`
-    );
+    // Print wheel information
+    console.log('\nWheel Information:');
+    this.wheels.forEach((wheel, index) => {
+      console.log(`Wheel ${index + 1}: ${wheel.diameter}" ${wheel.tireBrand}`);
+    });
   }
 }
 
-// Export the Car class as the default export
 export default Car;
