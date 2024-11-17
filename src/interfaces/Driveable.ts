@@ -1,9 +1,10 @@
-// definition of the Driveable interface
+// Interface for basic vehicle operations
 interface Driveable {
-  // declare the properties
+  // Vehicle state
   started: boolean;
   currentSpeed: number;
-  // declare the methods
+
+  // Vehicle control methods
   start(): void;
   accelerate(change: number): void;
   decelerate(change: number): void;
@@ -12,5 +13,4 @@ interface Driveable {
   reverse(): void;
 }
 
-// export the Driveable interface
 export default Driveable;

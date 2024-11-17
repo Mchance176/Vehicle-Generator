@@ -36,10 +36,21 @@ class Vehicle implements Driveable {
     this.year = year;
     this.weight = weight;
     this.topSpeed = topSpeed;
-    this.wheels = wheels;
+    
+    //  default wheel initialization here
+    if (!wheels || wheels.length === 0) {
+      this.wheels = [
+        new Wheel(16, "Standard"),
+        new Wheel(16, "Standard"),
+        new Wheel(16, "Standard"),
+        new Wheel(16, "Standard")
+      ];
+    } else {
+      this.wheels = wheels;
+    }
   }
 
-  // Method to print vehicle details
+  // print vehicle details
   printDetails(): void {
     console.log(`Vehicle Details:`);
     console.log(`VIN: ${this.vin}`);
@@ -53,17 +64,17 @@ class Vehicle implements Driveable {
     console.log(`Started: ${this.started}`);
     console.log(`Wheels: ${this.wheels.length}`);
     this.wheels.forEach((wheel, index) => {
-      console.log(`  Wheel ${index + 1}: ${wheel.size}" ${wheel.brand}`);
+      console.log(`  Wheel ${index + 1}: ${wheel.diameter}" ${wheel.tireBrand}`);
     });
   }
 
-  // Method to start the vehicle
+  //  start the vehicle
   start(): void {
     this.started = true;
     console.log(`${this.make} ${this.model} started`);
   }
 
-  // Method to accelerate the vehicle
+  //  accelerate the vehicle
   accelerate(change: number): void {
     if (this.started) {
       this.currentSpeed = Math.min(this.currentSpeed + change, this.topSpeed);
@@ -73,7 +84,7 @@ class Vehicle implements Driveable {
     }
   }
 
-  // Method to decelerate the vehicle
+  // decelerate the vehicle
   decelerate(change: number): void {
     if (this.started) {
       this.currentSpeed = Math.max(this.currentSpeed - change, 0);
@@ -83,14 +94,14 @@ class Vehicle implements Driveable {
     }
   }
 
-  // Method to stop the vehicle
+  //  stop the vehicle
   stop(): void {
     this.currentSpeed = 0;
     this.started = false;
     console.log(`${this.make} ${this.model} stopped`);
   }
 
-  // Method to turn the vehicle
+  // turn the vehicle
   turn(direction: string): void {
     if (this.started) {
       console.log(`${this.make} ${this.model} turned ${direction}`);
@@ -99,7 +110,7 @@ class Vehicle implements Driveable {
     }
   }
 
-  // Method to reverse the vehicle
+  // reverse the vehicle
   reverse(): void {
     if (this.started) {
       console.log(`${this.make} ${this.model} reversed`);

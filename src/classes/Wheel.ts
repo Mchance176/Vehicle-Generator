@@ -1,34 +1,52 @@
-// Wheel class that defines the properties of a wheel
+/**
+ * Represents a wheel with diameter and tire brand information
+ */
 class Wheel {
-  // Declare properties of the Wheel class using private access modifier
-  private diameter: number;
-  private tireBrand: string;
+  // Private properties to ensure encapsulation
+  private _diameter: number;
+  private _tireBrand: string;
 
-  // Constructor for the Wheel class
+  /**
+   * Creates a new Wheel instance
+   * @param diameter - The diameter of the wheel in inches (defaults to 18)
+   * @param tireBrand - The brand of tire (defaults to "GoodYear")
+   */
   constructor(diameter: number = 18, tireBrand: string = "GoodYear") {
-    this.diameter = diameter;
-    this.tireBrand = tireBrand;
+    this._diameter = diameter;
+    this._tireBrand = tireBrand;
   }
 
-  // Getter methods for the the diameter property  
-  get getDiameter(): number {
-    return this.diameter;
+  /**
+   * Gets the wheel's diameter
+   * @returns The diameter in inches
+   */
+  get diameter(): number {
+    return this._diameter;
   }
-   // Getter method for the tireBrand property  
-  get getTireBrand(): string {
-    return this.tireBrand;
+
+  /**
+   * Gets the wheel's tire brand
+   * @returns The tire brand name
+   */
+  get tireBrand(): string {
+    return this._tireBrand;
+  }
+
+  /**
+   * Sets the wheel's diameter
+   * @param value - The new diameter in inches
+   */
+  set diameter(value: number) {
+    this._diameter = value;
+  }
+
+  /**
+   * Sets the wheel's tire brand
+   * @param value - The new tire brand name
+   */
+  set tireBrand(value: string) {
+    this._tireBrand = value;
   }
 }
-  // Setter method for the diameter property
-  set setDiameter(diameter: number) {  
-    this.diameter = diameter;  
-   }  
-   
-   // Setter method for the tireBrand property  
-   set setTireBrand(tireBrand: string) {  
-    this.tireBrand = tireBrand;  
-   }  
- }  
 
-// Export the Wheel class
 export default Wheel;
